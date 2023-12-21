@@ -12,8 +12,8 @@ public class GitHubFileComparator {
 
     public static void main1(String[] args) {
         String owner = "reachrafee";
-        String repo = "CurrencyExchange";
-        String filePath = "README.md";
+        String repo = "demo";
+        String filePath = "resources/features.json";
         String token = "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"; // Replace with your GitHub token
 
         try {
