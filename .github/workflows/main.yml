@@ -21,7 +21,14 @@ jobs:
 
       - name: Build and run Java program
         run: |
-            # Install jq for JSON parsing
+          chmod +x gradlew
+          # Extract just the branch name from GITHUB_REF
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          
+          # Print the extracted branch name (for verification)
+          echo "Extracted branch name: $BRANCH_NAME"
+          
+          # Install jq for JSON parsing
           sudo apt-get install jq
           
           # Fetch pull request information from the event payload
@@ -32,13 +39,6 @@ jobs:
           
           # Print the extracted merged branch name (for verification)
           echo "Merged branch name: $MERGED_BRANCH"
-          
-          chmod +x gradlew
-          # Extract just the branch name from GITHUB_REF
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          
-          # Print the extracted branch name (for verification)
-          echo "Extracted branch name: $BRANCH_NAME"
           
           # Build and run Java program with the branch name
           ./gradlew -x test build
