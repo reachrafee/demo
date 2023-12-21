@@ -1,24 +1,23 @@
 package com.example.demo;
 
-import com.google.gson.Gson;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Base64;
 
 public class GitHubFileComparator {
 
-    public static void main1(String[] args) {
+    public static void main1(String branchName) {
+        System.out.println(branchName);
         String owner = "reachrafee";
-        String repo = "CurrencyExchange";
-        String filePath = "README.md";
-        String token = "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"; // Replace with your GitHub token
+        String repo = "demo";
+        String filePath = "src/main/resources/features.json";
+        String token = "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"; // Replace with your GitHub token
 
         try {
-            String currentBranchContent = getFileContent(owner, repo, filePath, "test", token);
-            String masterBranchContent = getFileContent(owner, repo, filePath, "main1", token);
+            String masterBranchContent = getFileContent(owner, repo, filePath, "main", token);
+            String currentBranchContent = getFileContent(owner, repo, filePath, branchName, token);
+
             System.out.println("currentBranchContent: " + currentBranchContent);
             System.out.println("masterBranchContent: " + masterBranchContent);
 
@@ -47,23 +46,24 @@ public class GitHubFileComparator {
         System.out.println(response.body());
         if (response.statusCode() == 200) {
             // Assuming the content is in JSON format, extract the 'content' field
-            Gson gson = new Gson();
-            String json = gson.toJson(response.body());
-            GithubFileContent githubFileContent = gson.fromJson(response.body(), GithubFileContent.class);
-            System.out.println("json: " + json);
-            System.out.println("githubFileContent"+githubFileContent.getContent());
-            String s = new String(Base64.getDecoder().decode(githubFileContent.getContent().trim()));
-            System.out.println("value is ::::  "+ s);
-            return s;
-//            String jsonContent = response.body();
-//            int startIndex = jsonContent.indexOf("\"content\":\"") + 11;
-//            int endIndex = jsonContent.indexOf("\",\"encoding\"");
-//
-//            if (startIndex >= 0 && endIndex >= 0) {
-//                return jsonContent.substring(startIndex, endIndex);
-//            }
+//            Gson gson = new Gson();
+//            String json = gson.toJson(response.body());
+//            GithubFileContent githubFileContent = gson.fromJson(response.body(), GithubFileContent.class);
+//            System.out.println("json: " + json);
+//            System.out.println("githubFileContent"+githubFileContent.getContent());
+//            String s = new String(Base64.getDecoder().decode(githubFileContent.getContent().trim()));
+//            System.out.println("value is ::::  "+ s);
+//            return s;
+            String jsonContent = response.body();
+            int startIndex = jsonContent.indexOf("\"content\":\"") + 11;
+            int endIndex = jsonContent.indexOf("\",\"encoding\"");
+
+            if (startIndex >= 0 && endIndex >= 0) {
+                return jsonContent.substring(startIndex, endIndex);
+            }
         } else {
             throw new Exception("Failed to fetch file content. HTTP status code: " + response.statusCode());
         }
+        return null;
     }
 }

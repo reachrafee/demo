@@ -17,9 +17,21 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
-          java-version: '11'
+          java-version: '17'
 
       - name: Build and run Java program
         run: |
-          ./gradlew build  # Replace with your build command if using Gradle
-          java -jar build/libs/demo-0.0.1-SNAPSHOT.jar 
+          # Extract just the branch name from GITHUB_REF
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          
+          # Print the extracted branch name (for verification)
+          echo "Extracted branch name: $BRANCH_NAME"
+          
+          # Build and run Java program with the branch name
+          ./gradlew -x test build
+          java -jar build/libs/demo-0.0.1-SNAPSHOT.jar "$BRANCH_NAME"
+#        run: |
+#          chmod +x gradlew
+#
+#          ./gradlew -x test build  # Replace with your build command if using Gradle
+#          java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
