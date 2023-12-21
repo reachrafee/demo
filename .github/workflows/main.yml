@@ -21,5 +21,6 @@ jobs:
 
       - name: Build and run Java program
         run: |
+          chmod +x gradlew
           ./gradlew build  # Replace with your build command if using Gradle
           java -jar build/libs/demo-0.0.1-SNAPSHOT.jar 
