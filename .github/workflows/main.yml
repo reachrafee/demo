@@ -21,6 +21,7 @@ jobs:
 
       - name: Build and run Java program
         run: |
+          chmod +x gradlew
           # Extract just the branch name from GITHUB_REF
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           
