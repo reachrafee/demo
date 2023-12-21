@@ -17,8 +17,8 @@ public class GitHubFileComparator {
         String token = "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"; // Replace with your GitHub token
 
         try {
-            String currentBranchContent = getFileContent(owner, repo, filePath, "test", token);
-            String masterBranchContent = getFileContent(owner, repo, filePath, "main1", token);
+            String currentBranchContent = getFileContent(owner, repo, filePath, "test-pr", token);
+            String masterBranchContent = getFileContent(owner, repo, filePath, "main", token);
             System.out.println("currentBranchContent: " + currentBranchContent);
             System.out.println("masterBranchContent: " + masterBranchContent);
 
