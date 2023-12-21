@@ -35,7 +35,7 @@ jobs:
           PR_INFO=$(cat "$GITHUB_EVENT_PATH")
           
           # Extract the merged branch name
-          MERGED_BRANCH=$(echo "$PR_INFO" | jq -r '.pull_request.base.ref')
+          MERGED_BRANCH=$(echo "$PR_INFO" | jq -r '.pull_request.head.ref')
           
           # Print the extracted merged branch name (for verification)
           echo "Merged branch name: $MERGED_BRANCH"
