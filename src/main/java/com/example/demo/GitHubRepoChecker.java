@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 public class GitHubRepoChecker {
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         String owner = "reachrafee";
         String repo = "CurrencyExchange";
         String filePath = "README.md";

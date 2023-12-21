@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 public class GitHubRepoLister {
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         //String token = "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"; // Replace with your GitHub token
         String token = "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";
 

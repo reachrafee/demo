@@ -1,0 +1,25 @@
+name: Java Program on PR Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  run-java-program:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Build and run Java program
+        run: |
+          ./gradlew build  # Replace with your build command if using Gradle
+          java -jar build/libs/demo-0.0.1-SNAPSHOT.jar 

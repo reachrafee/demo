@@ -10,7 +10,7 @@ import java.util.Base64;
 
 public class GitHubFileComparator {
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         String owner = "reachrafee";
         String repo = "CurrencyExchange";
         String filePath = "README.md";
@@ -18,7 +18,7 @@ public class GitHubFileComparator {
 
         try {
             String currentBranchContent = getFileContent(owner, repo, filePath, "test", token);
-            String masterBranchContent = getFileContent(owner, repo, filePath, "main", token);
+            String masterBranchContent = getFileContent(owner, repo, filePath, "main1", token);
             System.out.println("currentBranchContent: " + currentBranchContent);
             System.out.println("masterBranchContent: " + masterBranchContent);
 
