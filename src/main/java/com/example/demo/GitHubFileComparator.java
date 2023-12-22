@@ -12,7 +12,7 @@ public class GitHubFileComparator {
         String owner = "reachrafee";
         String repo = "demo";
         String filePath = "src/main/resources/features.json";
-        String token = "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"; // Replace with your GitHub token
+        String token = "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"; // Replace with your GitHub token
 
         try {
             String masterBranchContent = getFileContent(owner, repo, filePath, "main", token);
